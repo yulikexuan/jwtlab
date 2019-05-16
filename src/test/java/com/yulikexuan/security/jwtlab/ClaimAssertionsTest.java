@@ -59,10 +59,10 @@ public class ClaimAssertionsTest {
              */
         } catch (MissingClaimException mce) {
             // the parsed JWT did not have the sub field
-            mce.printStackTrace();
+            System.out.println(mce.getMessage());
         } catch (IncorrectClaimException ice) {
             // the parsed JWT had a sub field, but its value was not equal to ???
-            ice.printStackTrace();
+            System.out.println(ice.getMessage());
         }
 
         // When
@@ -79,6 +79,9 @@ public class ClaimAssertionsTest {
         // Given & When
         Throwable thrown = catchThrowable(() -> Jwts.parser()
                 .requireSubject(this.issuer)
+                // Require custom fields by using
+                // the require(fieldName, requiredFieldValue) method
+                .require("username", "yul")
                 .setSigningKeyResolver(this.signingKeyResolver)
                 .parseClaimsJws(this.jws));
 
