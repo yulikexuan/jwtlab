@@ -4,13 +4,12 @@
 package com.yulikexuan.security.jwtlab;
 
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.jsonwebtoken.security.SignatureException;
+import org.assertj.core.api.ThrowableAssert;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.function.Executable;
 
 import java.security.Key;
 import java.util.Base64;
@@ -20,14 +19,19 @@ import static org.assertj.core.api.Assertions.*;
 
 public class QuickstartTest {
 
+    /*
+     * This key is being used to validate the signature of the JWT.
+     */
     static Key key;
     static String encodedKey;
     static String subject;
+    static Base64.Encoder encoder;
 
     @BeforeAll
     static void init() {
         key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-        encodedKey = Base64.getEncoder().encodeToString(key.getEncoded());
+        encoder = Base64.getEncoder();
+        encodedKey = encoder.encodeToString(key.getEncoded());
         subject = "Yul";
     }
 
@@ -78,11 +82,16 @@ public class QuickstartTest {
         System.out.printf("The encoded key is '%s'%n", encodedKey);
 
         // When
-        String actualSubject = Jwts.parser()
-                .setSigningKey(key)
-                .parseClaimsJws(jws)
-                .getBody()
-                .getSubject();
+        String actualSubject = null;
+        try {
+            actualSubject = Jwts.parser()
+                    .setSigningKey(key)
+                    .parseClaimsJws(jws)
+                    .getBody()
+                    .getSubject();
+        } catch (SignatureException e) {
+            e.printStackTrace();
+        }
 
         // Then
         assertThat(partsSize)
@@ -91,6 +100,45 @@ public class QuickstartTest {
         assertThat(actualSubject)
                 .as("The subject in JWS should be %s", subject)
                 .isEqualTo(subject);
+    }
+
+    @DisplayName("Test the invalid subject value in JWS - ")
+    @Test
+    void testInvalidSubjectValueInJWS() {
+
+        // Given
+        String jws = Jwts.builder()
+                .setSubject(subject)
+                .signWith(key)
+                .compact();
+        String[] parts = jws.split("\\.");
+
+        String otherSubjectValue = "Joe";
+        String otherJws = Jwts.builder()
+                .setSubject(otherSubjectValue)
+                .signWith(key)
+                .compact();
+        String[] otherParts = otherJws.split("\\.");
+
+        System.out.printf("The original JWS is '%s'%n", jws);
+        System.out.printf("The encoded key is '%s'%n", encodedKey);
+
+        final String invalidJws = jws.replace(parts[1], otherParts[1]);
+
+        // When
+        Executable parser = () -> Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(invalidJws);
+
+        ThrowableAssert.ThrowingCallable callable = () -> Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(invalidJws);
+
+        Throwable thrown = catchThrowable(callable);
+
+        // Then
+        Assertions.assertThrows(SignatureException.class, parser);
+        assertThat(thrown).isInstanceOf(SignatureException.class);
     }
 
 }///:~
