@@ -49,13 +49,33 @@ public class JwtSigningTest {
     void testJwtSigning() throws InvalidKeyException, NoSuchAlgorithmException {
 
         // Givne
+
+        /*
+         * 1. Assume the json header and json claims are ready for JWT
+         * 2. Remove all unnecessary whitespace in the json
+         *    header = "{\"alg\":\"HS256\"}";
+         *    claims = "{\"sub\":\"Yul\"}";
+         * 3. Get the UTF-8 bytes and Base64URL-encode each
+         */
         String encodedHeader = base64URLEncode(
                 header.getBytes(StandardCharsets.UTF_8));
         String encodedClaims = base64URLEncode(
                 claims.getBytes(StandardCharsets.UTF_8));
 
+        /*
+         * 4. Concatenate the encoded header and claims with a period character
+         *    between them
+         */
         String concatenated = encodedHeader + '.' + encodedClaims;
 
+        /*
+         * 5. Use a sufficiently strong cryptographic secret or private key
+         *    along with a signing algorithm and sign the concatenated string
+         *
+         * 6. Because signatures are always byte arrays, Base64URL-encode the
+         *    signature and append it to the concatenated string with a period
+         *    "."
+         */
         Key key = getHS256SecretKey();
         byte[] data = concatenated.getBytes(StandardCharsets.UTF_8);
         byte[] signedData = hmacSha256(data, key);

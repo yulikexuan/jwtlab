@@ -40,6 +40,16 @@ public class QuickstartTest {
 
     }
 
+    /*
+     * Create a JWS as follows:
+     *   1. Use the Jwts.builder() method to create a JwtBuilder instance.
+     *   2. Call JwtBuilder methods to add header parameters and claims as
+     *      desired.
+     *   3. Specify the SecretKey or asymmetric PrivateKey you want to use to
+     *      sign the JWT.
+     *   4. Finally, call the compact() method to compact and sign, producing
+     *      the final jws.
+     */
     @DisplayName("Test the JWT has three parts - ")
     @Test
     void testJwtStructure() {
