@@ -53,7 +53,8 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
             <version>${jjwt.version}</version>
-            <scope>runtime</scope>
+            <!-- Should be compile scope if using JacksonSerializer -->
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

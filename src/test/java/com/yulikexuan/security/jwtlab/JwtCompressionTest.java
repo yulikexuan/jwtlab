@@ -4,6 +4,7 @@
 package com.yulikexuan.security.jwtlab;
 
 
+import com.yulikexuan.security.jwtlab.config.JsonMappingConfiguration;
 import com.yulikexuan.security.jwtlab.utils.SigningUtil;
 import io.jsonwebtoken.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.security.Key;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class JwtCompressionTest {
@@ -28,6 +29,8 @@ public class JwtCompressionTest {
     private String compressedJws;
 
     private SigningKeyResolver signingKeyResolver;
+
+    io.jsonwebtoken.io.JacksonSerializer JacksonSerializer;
 
     @BeforeEach
     void setUp() {
@@ -49,6 +52,7 @@ public class JwtCompressionTest {
                 "i1P8phaXr4CFS11";
 
         this.jws = Jwts.builder()
+                .serializeToJsonWith(JsonMappingConfiguration.jacksonSerializer())
                 .setHeaderParam(JwsHeader.KEY_ID, this.keyId)
                 .setIssuer(this.issuer)
                 .setSubject(this.subject)
@@ -57,6 +61,7 @@ public class JwtCompressionTest {
                 .compact();
 
         this.compressedJws = Jwts.builder()
+                .serializeToJsonWith(JsonMappingConfiguration.jacksonSerializer())
                 .setHeaderParam(JwsHeader.KEY_ID, this.keyId)
                 .setIssuer(this.issuer)
                 .setSubject(this.subject)
@@ -89,6 +94,7 @@ public class JwtCompressionTest {
 
         // When
         Jws<Claims> parsedJws = Jwts.parser()
+                .deserializeJsonWith(JsonMappingConfiguration.jacksonDeserializer())
                 .require("payload", this.payload)
                 .setSigningKeyResolver(this.signingKeyResolver)
                 .parseClaimsJws(this.compressedJws);
@@ -96,6 +102,5 @@ public class JwtCompressionTest {
         // Then
         assertThat(parsedJws).isNotNull();
     }
-
 
 }///:~
