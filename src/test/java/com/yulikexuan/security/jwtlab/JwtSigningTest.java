@@ -28,8 +28,8 @@ public class JwtSigningTest {
      */
     private Key key;
 
-    private String encodedKey;
     private String subject;
+    private String encodedKey;
     private Base64.Encoder encoder;
 
     private String header;

@@ -1,7 +1,8 @@
-//: com.yulikexuan.security.jwtlab.ClaimAssertionsTest.java
+//: com.yulikexuan.security.jwtlab.ClockSkewTest.java
 
 
 package com.yulikexuan.security.jwtlab;
+
 
 import com.yulikexuan.security.jwtlab.utils.SigningUtil;
 import io.jsonwebtoken.*;
@@ -10,10 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
 
-public class ClaimAssertionsTest {
+public class ClockSkewTest {
 
     private String issuer;
     private String subject;
@@ -40,17 +39,36 @@ public class ClaimAssertionsTest {
     }
 
     @Test
-    void able_To_Enforce_That_The_JWS_Being_Parsed_Conforms_To_Expectations() {
+    void able_To_Allow_Clock_Skew() {
 
         // Given
+        long seconds = 3 * 60;
+
         Jws<Claims> parsedJws = null;
         try {
+            /*
+             * When parsing a JWT, you might find that exp or nbf claim
+             * assertions fail (throw exceptions) because the clock on the
+             * parsing machine is not perfectly in sync with the clock on the
+             * machine that created the JWT.
+             *
+             * This can cause obvious problems since exp and nbf are time-based
+             * assertions, and clock times need to be reliably in sync for
+             * shared assertions.
+             *
+             * You can account for these differences (usually no more than a
+             * few minutes) when parsing using the JwtParser's
+             * setAllowedClockSkewSeconds
+             *
+             * This ensures that clock differences between the machines can be
+             * ignored.
+             *
+             * Two or three minutes should be more than enough;
+             */
             parsedJws = Jwts.parser()
-                    .requireIssuer(this.issuer)
-                    .requireSubject(this.subject)
-                    .setSigningKeyResolver(this.signingKeyResolver)
+                    .setAllowedClockSkewSeconds(seconds)
                     .parseClaimsJws(this.jws);
-        // } catch (InvalidClaimException  ice) {
+            // } catch (InvalidClaimException  ice) {
             /*
              * If it is important to react to a missing vs an incorrect value,
              * instead of catching InvalidClaimException, you can catch either
@@ -63,32 +81,6 @@ public class ClaimAssertionsTest {
             // the parsed JWT had a sub field, but its value was not equal to ???
             System.out.println(ice.getMessage());
         }
-
-        // When
-        Claims claims = parsedJws.getBody();
-
-        // Then
-        assertThat(claims.getSubject()).isEqualTo(this.subject);
-        assertThat(claims.getIssuer()).isEqualTo(this.issuer);
-    }
-
-    @Test
-    void able_To_Throw_InvalidClaimException_If_Cannot_Conform_Expectation() {
-
-        // Given & When
-        Throwable thrown = catchThrowable(() -> Jwts.parser()
-                .requireSubject(this.issuer)
-                // Require custom fields by using
-                // the require(fieldName, requiredFieldValue) method
-                .require("username", "yul")
-                .setSigningKeyResolver(this.signingKeyResolver)
-                .parseClaimsJws(this.jws));
-
-        // Then
-        assertThat(thrown)
-                .isInstanceOf(InvalidClaimException.class);
-        assertThat(thrown)
-                .isInstanceOf(IncorrectClaimException.class);
     }
 
 }///:~
