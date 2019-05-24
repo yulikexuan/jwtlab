@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class JsonMappingConfiguration {
 
     private static ObjectMapper objectMapper;
+
     private static JacksonSerializer jacksonSerializer;
     private static JacksonDeserializer jacksonDeserializer;
 
