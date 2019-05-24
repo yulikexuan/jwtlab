@@ -13,10 +13,10 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
-    @GetMapping()
+    @GetMapping
     public List<Client> getAllUsers() {
 
         Client client = new Client(1, "yul@tecsys.com",

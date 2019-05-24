@@ -7,6 +7,7 @@ package com.yulikexuan.security.jwtlab.filters.samples;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,7 @@ import java.io.IOException;
 @Slf4j
 @Order(1)
 @Component
-public class TransactionFilter implements Filter {
+public class TransactionFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest servletRequest,
@@ -34,6 +35,8 @@ public class TransactionFilter implements Filter {
         final HttpServletRequest req = (HttpServletRequest) servletRequest;
         log.info(">>>>>>> Starting a transaction for request: {}",
                 req.getRequestURI());
+        log.info(">>>>>>> Server Port: {}",
+                getEnvironment().getProperty("server.port"));
 
         filterChain.doFilter(servletRequest, servletResponse);
 
