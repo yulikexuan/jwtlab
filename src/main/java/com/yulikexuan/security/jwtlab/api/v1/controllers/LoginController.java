@@ -8,6 +8,7 @@ import com.yulikexuan.security.jwtlab.domain.model.ApiToken;
 import com.yulikexuan.security.jwtlab.domain.model.Client;
 import com.yulikexuan.security.jwtlab.utils.SigningUtil;
 import io.jsonwebtoken.Jwts;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,14 +25,17 @@ public class LoginController {
     @PostMapping
     public ResponseEntity<ApiToken> login(@RequestBody Client client) {
 
-        Jwts.builder()
+        ApiToken apiToken = new ApiToken(Jwts.builder()
                 .setSubject(client.getClientName())
                 .claim("roles", "user")
                 .setIssuedAt(new Date())
                 .signWith(SigningUtil.getHS256SecretKey())
-                .compact();
+                .compact());
 
-        return new ResponseEntity<>(null);
+        ResponseEntity<ApiToken> responseEntity =
+                new ResponseEntity<>(apiToken, HttpStatus.OK);
+
+        return responseEntity;
     }
 
 }///:~
