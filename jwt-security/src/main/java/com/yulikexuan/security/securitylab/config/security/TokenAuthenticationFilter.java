@@ -92,7 +92,8 @@ public class TokenAuthenticationFilter
             HttpServletResponse httpServletResponse)
             throws AuthenticationException, IOException, ServletException {
 
-        AuthenticationToken token = validateHeader(request.getHeader(TOKEN_HEADER));
+        AuthenticationToken token = validateHeader(
+                httpServletRequest.getHeader(TOKEN_HEADER));
         if (ObjectUtils.isEmpty(token)) {
             throw new ServletException("401 - UNAUTHORIZED");
         }
