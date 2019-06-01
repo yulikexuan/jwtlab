@@ -25,7 +25,11 @@ public class TokenAuthenticationSuccessHandler
             Authentication authentication)
             throws IOException, ServletException {
 
-        log.info(">>>>>>> TokenAuthenticationSuccessHandler - on Authentication Success.");
+        log.info(">>>>>>> TokenAuthenticationSuccessHandler - " +
+                "on Authentication Success.");
+
+        log.info(">>>>>>> Credentials: {}", authentication.getCredentials());
+        log.info(">>>>>>> Principal: {}", authentication.getPrincipal());
     }
 
 }///:~
