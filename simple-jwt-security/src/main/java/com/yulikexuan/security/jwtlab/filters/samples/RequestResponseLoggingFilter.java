@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.filters.samples.RequestResponseLoggingFilter.java
+//: com.yulikexuan.utils.jwtlab.filters.samples.RequestResponseLoggingFilter.java
 
 
 package com.yulikexuan.security.jwtlab.filters.samples;

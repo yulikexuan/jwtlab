@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.securitylab.domain.model.LoginUserDetails.java
+//: com.yulikexuan.utils.securitylab.domain.model.LoginUserDetails.java
 
 
 package com.yulikexuan.security.securitylab.domain.model;

@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.utils.DateUtil.java
+//: com.yulikexuan.utils.jwtlab.utils.DateUtil.java
 
 
 package com.yulikexuan.security.jwtlab.utils;

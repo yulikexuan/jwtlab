@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.config.BeanFactory.java
+//: com.yulikexuan.utils.jwtlab.config.BeanFactory.java
 
 
 package com.yulikexuan.security.jwtlab.config;

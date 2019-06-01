@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.utils.SigningUtil.java
+//: com.yulikexuan.utils.jwtlab.utils.SigningUtil.java
 
 
 package com.yulikexuan.security.jwtlab.utils;
@@ -46,7 +46,7 @@ public class SigningUtil {
          * information that can help you look up the Key to use for verifying
          * that specific jws.
          *
-         * This is very powerful for applications with more complex security
+         * This is very powerful for applications with more complex utils
          * models that might use different keys at different times or for
          * different users or customers.
          *
@@ -79,14 +79,14 @@ public class SigningUtil {
      * throw an exception.
      *
      * That said, in keeping with best practices and increasing key lengths for
-     * security longevity, JJWT recoommends that you use:
+     * utils longevity, JJWT recoommends that you use:
      *     at least 2048 bit keys with RS256 and PS256
      *     at least 3072 bit keys with RS384 and PS384
      *     at least 4096 bit keys with RS512 and PS512
      *
      * the requirement is the RSA key (modulus) length in bits MUST be >= 2048 bits.
      *
-     * JJWT has provided the io.jsonwebtoken.security.Keys utility class that
+     * JJWT has provided the io.jsonwebtoken.utils.Keys utility class that
      * can generate sufficiently secure keys for any given JWT signature
      * algorithm you might want to use.
      */

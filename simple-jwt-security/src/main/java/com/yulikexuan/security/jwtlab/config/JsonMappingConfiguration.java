@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.config.JsonMappingConfiguration.java
+//: com.yulikexuan.utils.jwtlab.config.JsonMappingConfiguration.java
 
 
 package com.yulikexuan.security.jwtlab.config;

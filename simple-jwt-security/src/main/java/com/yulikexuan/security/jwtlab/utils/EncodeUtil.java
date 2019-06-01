@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.utils.EncodeUtil.java
+//: com.yulikexuan.utils.jwtlab.utils.EncodeUtil.java
 
 
 package com.yulikexuan.security.jwtlab.utils;

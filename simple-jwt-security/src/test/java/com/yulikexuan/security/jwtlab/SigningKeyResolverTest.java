@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.SigningKeyResolverTest.java
+//: com.yulikexuan.utils.jwtlab.SigningKeyResolverTest.java
 
 
 package com.yulikexuan.security.jwtlab;

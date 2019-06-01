@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.filters.JWTFilter.java
+//: com.yulikexuan.utils.jwtlab.filters.JWTFilter.java
 
 
 package com.yulikexuan.security.jwtlab.filters;

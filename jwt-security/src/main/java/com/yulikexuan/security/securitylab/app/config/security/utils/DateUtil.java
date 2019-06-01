@@ -1,7 +1,7 @@
-//: com.yulikexuan.security.securitylab.config.security.utils.DateUtil.java
+//: com.yulikexuan.utils.securitylab.config.utils.utils.DateUtil.java
 
 
-package com.yulikexuan.security.securitylab.config.security.utils;
+package com.yulikexuan.security.securitylab.app.config.security.utils;
 
 
 import java.time.Instant;

@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.domain.model.ApiToken.java
+//: com.yulikexuan.utils.jwtlab.domain.model.ApiToken.java
 
 
 package com.yulikexuan.security.jwtlab.domain.model;

@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.securitylab.domain.model.AuthenticationToken.java
+//: com.yulikexuan.utils.securitylab.domain.model.AuthenticationToken.java
 
 
 package com.yulikexuan.security.securitylab.domain.model;

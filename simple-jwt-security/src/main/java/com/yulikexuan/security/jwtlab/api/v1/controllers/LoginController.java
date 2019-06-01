@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.api.v1.controllers.LoginController.java
+//: com.yulikexuan.utils.jwtlab.api.v1.controllers.LoginController.java
 
 
 package com.yulikexuan.security.jwtlab.api.v1.controllers;

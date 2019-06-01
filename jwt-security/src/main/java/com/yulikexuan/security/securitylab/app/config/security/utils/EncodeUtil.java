@@ -1,7 +1,7 @@
-//: com.yulikexuan.security.securitylab.config.security.utils.EncodeUtil.java
+//: com.yulikexuan.utils.securitylab.config.utils.utils.EncodeUtil.java
 
 
-package com.yulikexuan.security.securitylab.config.security.utils;
+package com.yulikexuan.security.securitylab.app.config.security.utils;
 
 
 import io.jsonwebtoken.io.Encoders;

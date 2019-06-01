@@ -1,10 +1,10 @@
-//: com.yulikexuan.security.securitylab.config.security.TokenAuthenticationProvider.java
+//: com.yulikexuan.utils.securitylab.app.utils.TokenAuthenticationProvider.java
 
 
-package com.yulikexuan.security.securitylab.config.security;
+package com.yulikexuan.security.securitylab.app.config.security;
 
 
-import com.yulikexuan.security.securitylab.config.security.utils.SigningUtil;
+import com.yulikexuan.security.securitylab.app.config.security.utils.SigningUtil;
 import com.yulikexuan.security.securitylab.domain.model.AuthenticationToken;
 import com.yulikexuan.security.securitylab.domain.model.LoginUserDetails;
 import io.jsonwebtoken.Claims;

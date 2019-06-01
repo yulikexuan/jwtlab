@@ -1,7 +1,7 @@
-//: com.yulikexuan.security.securitylab.config.security.SecurityConfig.java
+//: com.yulikexuan.utils.securitylab.app.utils.SecurityConfig.java
 
 
-package com.yulikexuan.security.securitylab.config.security;
+package com.yulikexuan.security.securitylab.app.config.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.QuickstartTest.java
+//: com.yulikexuan.utils.jwtlab.QuickstartTest.java
 
 
 package com.yulikexuan.security.jwtlab;

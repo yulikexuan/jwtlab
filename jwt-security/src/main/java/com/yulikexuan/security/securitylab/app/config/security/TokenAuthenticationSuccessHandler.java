@@ -1,7 +1,7 @@
-//: com.yulikexuan.security.securitylab.config.security.TokenAuthenticationSuccessHandler.java
+//: com.yulikexuan.utils.securitylab.app.utils.TokenAuthenticationSuccessHandler.java
 
 
-package com.yulikexuan.security.securitylab.config.security;
+package com.yulikexuan.security.securitylab.app.config.security;
 
 
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.JwtCompressionTest.java
+//: com.yulikexuan.utils.jwtlab.JwtCompressionTest.java
 
 
 package com.yulikexuan.security.jwtlab;

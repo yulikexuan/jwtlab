@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.JwtlabApplication.java
+//: com.yulikexuan.utils.jwtlab.JwtlabApplication.java
 
 
 package com.yulikexuan.security.jwtlab;

@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.domain.model.Client.java
+//: com.yulikexuan.utils.jwtlab.domain.model.Client.java
 
 
 package com.yulikexuan.security.jwtlab.domain.model;

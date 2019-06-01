@@ -1,7 +1,7 @@
-//: com.yulikexuan.security.securitylab.config.security.TokenAuthenticationFilter.java
+//: com.yulikexuan.utils.securitylab.app.utils.TokenAuthenticationFilter.java
 
 
-package com.yulikexuan.security.securitylab.config.security;
+package com.yulikexuan.security.securitylab.app.config.security;
 
 
 import com.yulikexuan.security.securitylab.domain.model.AuthenticationToken;

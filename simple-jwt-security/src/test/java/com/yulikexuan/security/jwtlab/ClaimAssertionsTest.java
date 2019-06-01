@@ -1,4 +1,4 @@
-//: com.yulikexuan.security.jwtlab.ClaimAssertionsTest.java
+//: com.yulikexuan.utils.jwtlab.ClaimAssertionsTest.java
 
 
 package com.yulikexuan.security.jwtlab;
