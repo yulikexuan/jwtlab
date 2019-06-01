@@ -20,7 +20,6 @@ import java.util.Date;
 public class TokenController {
 
     private static final long EXPIRATION_SECONDS = 60;
-    private static final String SECURITY_KEY = "!@asdsadJAS780";
 
     @PostMapping
     public AuthenticationToken generate(

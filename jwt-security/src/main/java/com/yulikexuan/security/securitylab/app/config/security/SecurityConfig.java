@@ -103,7 +103,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.info(">>>>>>> In SecurityConfig - Get HttpSecurity ... ... ");
+        log.info(">>>>>>> In SecurityConfig - Config HttpSecurity ... ... ");
         http.csrf().disable().authorizeRequests()
                 .antMatchers("**/secured/**")
                 .authenticated()
