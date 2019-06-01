@@ -9,6 +9,7 @@ import com.yulikexuan.security.securitylab.domain.model.AuthenticationToken;
 import com.yulikexuan.security.securitylab.domain.model.LoginUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Component;
  * the username, or the UserDetails that was returned from the authentication
  * repository
  */
+@Slf4j
 @Component
 public class TokenAuthenticationProvider
         extends AbstractUserDetailsAuthenticationProvider {
@@ -51,6 +53,7 @@ public class TokenAuthenticationProvider
             UsernamePasswordAuthenticationToken authenticationToken)
             throws AuthenticationException {
 
+        log.info(">>>>>>> In TokenAuthenticationProvider - additional authentication checks ... ...");
     }
 
     /*
@@ -65,6 +68,8 @@ public class TokenAuthenticationProvider
             String username,
             UsernamePasswordAuthenticationToken authenticationToken)
             throws AuthenticationException {
+
+        log.info(">>>>>>> In TokenAuthenticationProvider - retrieve user details ... ...");
 
         AuthenticationToken jwtToken = (AuthenticationToken) authenticationToken;
         String token = jwtToken.getToken();

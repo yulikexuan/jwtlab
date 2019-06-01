@@ -4,6 +4,7 @@
 package com.yulikexuan.security.securitylab.app.config.security;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  *
  */
+@Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
@@ -57,11 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
+        log.info(">>>>>>>  In SecurityConfig - Get an AuthenticationManager Instance.");
         return super.authenticationManagerBean();
     }
 
     @Bean
     public TokenAuthenticationFilter authenticationTokenFilter() throws Exception {
+
+        log.info(">>>>>>>  In SecurityConfig - Get an AuthenticationTokenFilter Instance.");
+
         TokenAuthenticationFilter filter = new TokenAuthenticationFilter();
         filter.setAuthenticationManager(authenticationManagerBean());
         filter.setAuthenticationSuccessHandler(new TokenAuthenticationSuccessHandler());
@@ -76,6 +82,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        log.info(">>>>>>> In SecurityConfig - Config Authentication Provider.");
+
         auth.authenticationProvider(tokenAuthenticationProvider);
     }
 
@@ -94,6 +103,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        log.info(">>>>>>> In SecurityConfig - Get HttpSecurity ... ... ");
         http.csrf().disable().authorizeRequests()
                 .antMatchers("**/secured/**")
                 .authenticated()

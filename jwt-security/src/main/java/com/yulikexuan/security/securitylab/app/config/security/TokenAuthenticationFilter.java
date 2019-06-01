@@ -5,6 +5,7 @@ package com.yulikexuan.security.securitylab.app.config.security;
 
 
 import com.yulikexuan.security.securitylab.domain.model.AuthenticationToken;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -76,6 +77,7 @@ import java.io.IOException;
  * sessions a principal may have
  *
  */
+@Slf4j
 public class TokenAuthenticationFilter
         extends AbstractAuthenticationProcessingFilter {
 
@@ -92,6 +94,8 @@ public class TokenAuthenticationFilter
             HttpServletResponse httpServletResponse)
             throws AuthenticationException, IOException, ServletException {
 
+        log.info(">>>>>>> In TokenAuthenticationFilter - attempt authenticate ... ...");
+
         AuthenticationToken token = validateHeader(
                 httpServletRequest.getHeader(TOKEN_HEADER));
         if (ObjectUtils.isEmpty(token)) {
@@ -106,6 +110,7 @@ public class TokenAuthenticationFilter
             FilterChain chain, Authentication authResult)
             throws IOException, ServletException {
 
+        log.info(">>>>>>> In TokenAuthenticationFilter - successful authentication ... ...");
         super.successfulAuthentication(request, response, chain, authResult);
         chain.doFilter(request, response);
     }
